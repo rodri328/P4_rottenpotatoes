@@ -1,0 +1,17 @@
+%h1 Requested movie: #{@movies.title}
+
+= form_tag movies_path do
+
+  %label{:for => "movie_title"} Title
+  %input#movie_title{:name => "movie[title]", :size => "30", :type => "text", :value => @movies.title}
+
+  = label :movie, :rating, 'Rating (select one or G will be added by default)'
+  = select :movie, :rating, ['G','PG','PG-13','R','NC-17']
+
+  = label :movie, :release_date, "Released On (select one or today's date will be added by default)"
+  = date_select :movie, :release_date
+
+  %label{:for => "movie_director"} Director
+  %input#movie_director{:name => "movie[director]", :size => "30", :type => "text", :value => @movies.crew[0].name}
+
+  = submit_tag 'Save movie'

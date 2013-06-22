@@ -31,6 +31,9 @@ gem 'jquery-rails'
 
 gem 'haml'
 
+gem 'ruby-tmdb3'
+
+gem 'simplecov', :require => false
 
 group :test do
   gem 'rspec-rails'

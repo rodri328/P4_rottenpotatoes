@@ -64,4 +64,25 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def search_same_director
+    movie = Movie.find_by_id(params[:id])
+    director = movie.director
+    if (director != nil) and (director != '') then
+      @movies = Movie.find_all_by_director(director)
+    else
+      flash[:notice] = "'#{movie.title}' has no director info"
+      redirect_to movies_path
+    end
+  end
+
+  def search_tmdb
+    @movies=Movie.find_in_tmdb(params[:search_terms])
+    if @movies==[] then
+       flash[:notice] = "'#{params[:search_terms]}' was not found in TMDb."
+       redirect_to movies_path
+    end
+    rescue Movie::InvalidKeyError
+      flash[:warning] = "Search not available."
+      redirect_to movies_path
+  end
 end
