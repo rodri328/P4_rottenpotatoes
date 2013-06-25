@@ -6,9 +6,15 @@ class Movie < ActiveRecord::Base
   end
   def self.api_key
     puts 'elijo apikey'
+<<<<<<< HEAD
     puts '----------'
     puts 'apikey correcta'
     '69583b1c8f1a3d699710bca230de5677'
+=======
+    puts '--------------'
+    key='69583b1c8f1a3d699710bca230de5677'
+    key
+>>>>>>> bde34cba2138adfe1ca0f642641304c0581b8cd4
   end
 
   def self.find_in_tmdb(string)
