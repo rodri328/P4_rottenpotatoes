@@ -6,17 +6,17 @@ class Movie < ActiveRecord::Base
   end
   def self.api_key
     puts 'elijo apikey'
-    key='69583b1c8f1a3d699710bca230de5677'
-    key
+    puts '----------'
+    puts 'apikey correcta'
+    '69583b1c8f1a3d699710bca230de5677'
   end
 
   def self.find_in_tmdb(string)
-    key=self.api_key
-    Tmdb.api_key = key
+    puts 'llamo a la funcion que me devuelve el apikey'
+    Tmdb.api_key = self.api_key
     begin
       puts 'realizo peticion a tmdb'
       @movies=TmdbMovie.find(:title => string, :limit => 1)
-      puts 'peticion realizada'
     rescue ArgumentError => tmdb_error
       raise Movie::InvalidKeyError, tmdb_error.message
     rescue RuntimeError => tmdb_error

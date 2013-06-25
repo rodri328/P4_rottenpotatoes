@@ -27,7 +27,6 @@ uname -v = #50-Ubuntu SMP Fri Sep 7 16:39:45 UTC 2012
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
-PATH: /usr/lib/lightdm/lightdm
 PATH: /usr/local/sbin
 PATH: /usr/local/bin
 PATH: /usr/sbin

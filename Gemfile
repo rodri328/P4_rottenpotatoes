@@ -35,6 +35,9 @@ gem 'ruby-tmdb3'
 
 gem 'simplecov', :require => false
 
+gem 'omniauth-twitter'
+
+
 group :test do
   gem 'rspec-rails'
   gem 'ZenTest' # autotest

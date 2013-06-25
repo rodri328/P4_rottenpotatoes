@@ -17,6 +17,10 @@ Rottenpotatoes::Application.routes.draw do
     match 'search_same_director/:id' => 'movies#search_same_director'
   end
   post '/movies/search_tmdb'
+  match 'auth/:provider/callback' => 'sessions#create'
+  match '/logout' => 'sessions#destroy'
+  match '/login' => 'sessions#login'
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
