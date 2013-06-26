@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
+    @current_user ||= Moviegoer.find_by_id(session[:user_id])
   end
 
   def index
@@ -34,6 +35,7 @@ class MoviesController < ApplicationController
       redirect_to :sort => sort, :ratings => @selected_ratings and return
     end
     @movies = Movie.find_all_by_rating(@selected_ratings.keys, ordering)
+    @current_user ||= Moviegoer.find_by_id(session[:user_id])
   end
 
   def new
@@ -65,6 +67,7 @@ class MoviesController < ApplicationController
   end
 
   def search_same_director
+    @current_user ||= Moviegoer.find_by_id(session[:user_id])
     movie = Movie.find_by_id(params[:id])
     director = movie.director
     if (director != nil) and (director != '') then
@@ -76,6 +79,7 @@ class MoviesController < ApplicationController
   end
 
   def search_tmdb
+    @current_user ||= Moviegoer.find_by_id(session[:user_id])
     @movies=Movie.find_in_tmdb(params[:search_terms])
     if @movies==[] then
        flash[:notice] = "'#{params[:search_terms]}' was not found in TMDb."
